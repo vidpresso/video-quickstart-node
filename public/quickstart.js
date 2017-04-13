@@ -47,7 +47,7 @@ $.getJSON('/token', function(data) {
     if (roomName) {
       log("Joining room '" + roomName + "'...");
 
-      var connectOptions = { name: roomName, logLevel: 'debug' };
+      var connectOptions = { name: roomName, logLevel: 'debug', audio: false, video: false };
       if (previewTracks) {
         connectOptions.tracks = previewTracks;
       }
