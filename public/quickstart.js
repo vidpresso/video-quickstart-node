@@ -60,6 +60,54 @@ $.getJSON('/token', function(data) {
     }
   };
 
+  document.getElementById('button-add-both-simultaneously').onclick = function () {
+    previewTracks.forEach(localTrackAdd);
+  }
+
+  document.getElementById('button-add-both-staggered-200').onclick = function () {
+    const videoTrack = previewTracks.filter(track => track.kind === 'video')[0];
+    const audioTrack = previewTracks.filter(track => track.kind === 'audio')[0];
+    localTrackAdd(videoTrack)
+    const delayedAudioAdd = () => {
+      localTrackAdd(audioTrack);
+    }
+    setTimeout(delayedAudioAdd, 200)
+  }
+
+  document.getElementById('button-add-both-staggered-250').onclick = function () {
+    const videoTrack = previewTracks.filter(track => track.kind === 'video')[0];
+    const audioTrack = previewTracks.filter(track => track.kind === 'audio')[0];
+    localTrackAdd(videoTrack)
+    const delayedAudioAdd = () => {
+      localTrackAdd(audioTrack);
+    }
+    setTimeout(delayedAudioAdd, 250)
+  }
+
+  document.getElementById('button-add-both-staggered-500').onclick = function () {
+    const videoTrack = previewTracks.filter(track => track.kind === 'video')[0];
+    const audioTrack = previewTracks.filter(track => track.kind === 'audio')[0];
+    localTrackAdd(videoTrack)
+    const delayedAudioAdd = () => {
+      localTrackAdd(audioTrack);
+    }
+    setTimeout(delayedAudioAdd, 500)
+  }
+
+  document.getElementById('button-add-video').onclick = function () {
+    const videoTrack = previewTracks.filter(track => track.kind === 'video')[0];
+    localTrackAdd(videoTrack);
+  }
+
+  document.getElementById('button-add-audio').onclick = function () {
+    const audioTrack = previewTracks.filter(track => track.kind === 'audio')[0];
+    localTrackAdd(audioTrack);
+  }
+
+  function localTrackAdd (previewTrack) {
+    activeRoom.localParticipant.addTrack(previewTrack);
+  }
+
   // Bind button to leave room
   document.getElementById('button-leave').onclick = function () {
     log('Leaving room...');
